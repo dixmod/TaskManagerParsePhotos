@@ -2,7 +2,7 @@
 
 namespace Dixmod\Repository\Task;
 
-abstract class TaskRepository
+abstract class TaskRepository implements TaskRepositoryInterface
 {
 
 }
