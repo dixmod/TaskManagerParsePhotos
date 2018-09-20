@@ -1,0 +1,22 @@
+{
+  "name": "dixmod/task-manager-parse-photos",
+  "description": "Console task manager application processing photos",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "dixmod",
+      "email": "dixmod@gmail.com"
+    }
+  ],
+  "require": {
+    "php": "^7.2",
+    "symfony/console": "^4.1",
+    "symfony/filesystem": "^4.1",
+    "dixmod/photo-processing": "^1.0"
+  },
+  "autoload": {
+    "psr-4": {
+      "Dixmod\\": "src/"
+    }
+  }
+}
