@@ -1,6 +1,6 @@
 <?php
 
-namespace Dixmod\Task;
+namespace Dixmod\Services\Task;
 
 interface TaskInterface
 {

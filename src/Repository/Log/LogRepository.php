@@ -1,6 +1,6 @@
 <?php
 
-namespace Dixmod\Repository\Log;
+namespace Dixmod\Repository;
 
 abstract class LogRepository
 {

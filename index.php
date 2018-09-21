@@ -3,4 +3,5 @@
 
     use Dixmod\Application\Manager;
 
-    $manager = new Manager();
+    $taskManager = new Manager();
+    $taskManager->run();
