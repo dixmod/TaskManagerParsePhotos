@@ -90,7 +90,7 @@ CREATE TABLE `task` (
   KEY `task_type_IDX` (`type`) USING BTREE,
   CONSTRAINT `task_taskStatus_FK` FOREIGN KEY (`status`) REFERENCES `taskStatus` (`id`),
   CONSTRAINT `task_user_FK` FOREIGN KEY (`user`) REFERENCES `user` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -99,6 +99,7 @@ CREATE TABLE `task` (
 
 LOCK TABLES `task` WRITE;
 /*!40000 ALTER TABLE `task` DISABLE KEYS */;
+INSERT INTO `task` VALUES (1,'Задача 1',NULL,1,1,1),(2,'Задача 2',NULL,2,1,1),(3,'Задача 3',NULL,3,1,1);
 /*!40000 ALTER TABLE `task` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -114,7 +115,7 @@ CREATE TABLE `taskStatus` (
   `name` varchar(100) NOT NULL COMMENT 'Название статуса',
   `description` text COMMENT 'Подробное описание статуса',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -123,7 +124,7 @@ CREATE TABLE `taskStatus` (
 
 LOCK TABLES `taskStatus` WRITE;
 /*!40000 ALTER TABLE `taskStatus` DISABLE KEYS */;
-INSERT INTO `taskStatus` VALUES (1,'Создана',NULL),(2,'В работе',NULL),(3,'Выполнена',NULL);
+INSERT INTO `taskStatus` VALUES (1,'Создана','Задача поступала на выполнение'),(2,'В работе','Задача взята в работу'),(3,'Выполнена','Задача выполнена'),(4,'Ошибка','Ошибка в процессе выполнения');
 /*!40000 ALTER TABLE `taskStatus` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -149,6 +150,7 @@ CREATE TABLE `typeTaskPhotoDownload` (
 
 LOCK TABLES `typeTaskPhotoDownload` WRITE;
 /*!40000 ALTER TABLE `typeTaskPhotoDownload` DISABLE KEYS */;
+INSERT INTO `typeTaskPhotoDownload` VALUES (1,'https://otus.ru/media/83/9c/839c578bf13941a9906403ddab6f855a.jpg?action=resize&width=340&height=340','1.jpg');
 /*!40000 ALTER TABLE `typeTaskPhotoDownload` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -177,6 +179,7 @@ CREATE TABLE `typeTaskPhotoParse` (
 
 LOCK TABLES `typeTaskPhotoParse` WRITE;
 /*!40000 ALTER TABLE `typeTaskPhotoParse` DISABLE KEYS */;
+INSERT INTO `typeTaskPhotoParse` VALUES (2,'1.jpg',1,'');
 /*!40000 ALTER TABLE `typeTaskPhotoParse` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -202,6 +205,7 @@ CREATE TABLE `typeTaskPhotoSend` (
 
 LOCK TABLES `typeTaskPhotoSend` WRITE;
 /*!40000 ALTER TABLE `typeTaskPhotoSend` DISABLE KEYS */;
+INSERT INTO `typeTaskPhotoSend` VALUES (3,'1.jpg','test@test.ru');
 /*!40000 ALTER TABLE `typeTaskPhotoSend` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -230,10 +234,6 @@ LOCK TABLES `user` WRITE;
 INSERT INTO `user` VALUES (1,'Иван','ivan@mail.ru'),(2,'Петр','petr@mail.ru'),(3,'Семен','semen@mail.ru');
 /*!40000 ALTER TABLE `user` ENABLE KEYS */;
 UNLOCK TABLES;
-
---
--- Dumping routines for database 'otus10'
---
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
@@ -244,4 +244,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-09-20 15:33:19
+-- Dump completed on 2018-09-24 16:29:55
