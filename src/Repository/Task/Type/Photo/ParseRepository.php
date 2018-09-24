@@ -2,7 +2,14 @@
 
 namespace Dixmod\Repository\Task\Type\Photo;
 
-class ParseRepository
+use Dixmod\Repository\{
+    AbstractRepository,
+    RepositoryInterface
+};
+
+class ParseRepository extends AbstractRepository implements RepositoryInterface
 {
+    protected $table = 'typeTaskPhotoParse';
+
 
 }

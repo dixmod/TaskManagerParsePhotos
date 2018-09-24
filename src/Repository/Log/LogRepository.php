@@ -2,7 +2,7 @@
 
 namespace Dixmod\Repository;
 
-abstract class LogRepository
+class LogRepository extends AbstractRepository implements RepositoryInterface
 {
-
+    protected $table = 'log';
 }

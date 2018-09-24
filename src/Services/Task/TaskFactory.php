@@ -10,24 +10,27 @@ class TaskFactory
     /** @var TaskRepository */
     private $taskRepository;
 
+    /** @var TaskBuilder */
+    private $taskBuilder;
+
+    /**
+     * TaskFactory constructor.
+     */
     public function __construct()
     {
         $this->taskRepository = new TaskRepository();
+        $this->taskBuilder = new TaskBuilder();
     }
 
-    public function get()
+    /**
+     * @param array $filter
+     * @return array
+     */
+    public function get(array $filter = []): array
     {
-
-        $taskBuilder = new TaskBuilder(
-            /*new CatalogProductVariantBuilder(new VariantsSizeSort()),
-            new PictureBuilder()*/
-        );
-
-
-
-        $arTask = $this->taskRepository->findAll();
+        $arTask = $this->taskRepository->findAll($filter);
         foreach ($arTask as &$task) {
-            $task = $taskBuilder->build($task);
+            $task = $this->taskBuilder->build($task);
         }
 
         return $arTask;
