@@ -35,6 +35,7 @@ class Manager implements ApplicationInterface
                 $task->run();
                 $task->changeStatus(Status::DONE);
             }catch (\Exception $exception){
+                print_r($exception->getMessage());
                 $task->changeStatus(Status::ERROR);
             }
         }

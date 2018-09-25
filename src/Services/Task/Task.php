@@ -8,6 +8,10 @@ use Dixmod\Services\User\User;
 
 class Task extends TaskDTO implements TaskInterface
 {
+    const TYPE_PHOTO_DOWNLOAD = 1;
+    const TYPE_PHOTO_PARSE = 2;
+    const TYPE_PHOTO_SEND = 3;
+
     public function __construct(TaskDTO $taskDTO)
     {
         $this->id = $taskDTO->id;
@@ -52,11 +56,11 @@ class Task extends TaskDTO implements TaskInterface
     private function getWorker(): TaskInterface
     {
         switch ($this->type) {
-            case 1:
+            case self::TYPE_PHOTO_DOWNLOAD:
                 return new Type\Photo\Download();
-            case 2:
+            case self::TYPE_PHOTO_PARSE:
                 return new Type\Photo\Parse();
-            case 3:
+            case self::TYPE_PHOTO_SEND:
                 return new Type\Photo\Send();
             default:
                 throw new \Exception('Unknown task type');
@@ -76,7 +80,7 @@ class Task extends TaskDTO implements TaskInterface
             $worker->setTaskId($this->id);
             $worker->run();
         } catch (\Exception $e) {
-            throw new \Exception('Error executor');
+            throw new \Exception('Error executor: '.$e->getMessage());
         }
 
         return true;
