@@ -2,10 +2,10 @@
 
 namespace Dixmod\Application;
 
+use Dixmod\Services\Log\Log;
 use Dixmod\Services\Task\Status;
 use Dixmod\Services\Task\Task;
 use Dixmod\Services\Task\TaskFactory;
-use Dixmod\Services\Log;
 
 class Manager implements ApplicationInterface
 {
@@ -32,12 +32,11 @@ class Manager implements ApplicationInterface
 
         foreach ($tasks as &$task) {
             /** @var $task Task */
-            try{
+            try {
                 $task->changeStatus(Status::IN_WORK);
-
                 $task->run();
                 $task->changeStatus(Status::DONE);
-            }catch (\Exception $exception){
+            } catch (\Exception $exception) {
                 print_r($exception->getMessage());
                 $task->changeStatus(Status::ERROR);
             }

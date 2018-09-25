@@ -1,7 +1,10 @@
 <?php
 
 return [
-    'db' => array(
+    'tmp' => [
+        'dir' => getcwd() . DIRECTORY_SEPARATOR . 'tmp'
+    ],
+    'db' => [
         'host' => 'localhost',
         'user' => 'box',
         'pass' => 'box',
@@ -12,5 +15,5 @@ return [
         'charset' => 'utf8',
         'errmode' => 'exception', //or 'error'
         'exception' => 'Exception', //Exception class name
-    )
+    ]
 ];

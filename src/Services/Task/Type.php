@@ -22,13 +22,19 @@ class Type
         $this->params = $this->getParams();
     }
 
+    /**
+     * @return int
+     */
     public function getTaskId(): int
     {
         return $this->id;
     }
 
+    /**
+     * @return array
+     */
     public function getParams(): array
     {
-        return $this->repository->getById( $this->getTaskId() );
+        return $this->repository->getById($this->getTaskId());
     }
 }

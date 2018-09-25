@@ -1,6 +1,9 @@
 <?php
 
-namespace Dixmod\Repository;
+namespace Dixmod\Repository\Log;
+
+use Dixmod\Repository\AbstractRepository;
+use Dixmod\Repository\RepositoryInterface;
 
 class LogRepository extends AbstractRepository implements RepositoryInterface
 {

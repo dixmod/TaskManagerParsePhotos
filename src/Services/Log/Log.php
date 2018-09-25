@@ -3,8 +3,7 @@
 namespace Dixmod\Services\Log;
 
 use Dixmod\DTO\LogDTO;
-
-use Dixmod\Repository\LogRepository;
+use Dixmod\Repository\Log\LogRepository;
 
 class Log extends LogDTO implements LogInterface
 {

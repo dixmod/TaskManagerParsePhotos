@@ -2,14 +2,13 @@
 
 namespace Dixmod\Services\Task\Type\Photo;
 
-use Dixmod\{
+use Dixmod\{Application\Config,
     Builder\PhotoFilterBuilder,
     File\Photo,
     Repository\Task\Type\Photo\ParseRepository,
     Services\PhotoFilter\PhotoFilter,
     Services\Task\TaskInterface,
-    Services\Task\Type
-};
+    Services\Task\Type};
 
 class Parse extends Type implements TaskInterface
 {
@@ -31,9 +30,9 @@ class Parse extends Type implements TaskInterface
 
     public function run()
     {
-        $photo = new Photo($this->params['photo']);
+        $photo = new Photo($this->getFileName());
         $photo->setFilter( $this->getFilter()->getCode() );
-        $photo->save($this->params['photo']);
+        $photo->save($this->getFileName());
     }
 
     /**
@@ -42,5 +41,13 @@ class Parse extends Type implements TaskInterface
     private function getFilter(): PhotoFilter
     {
         return $this->photoFilterBuilder->buildById($this->params['filter']);
+    }
+
+    /**
+     * @return string
+     */
+    private function getFileName(): string
+    {
+        return Config::getOptions('tmp')['dir'].'/'.$this->params['photo'];
     }
 }
