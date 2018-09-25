@@ -11,6 +11,7 @@ class Download extends Type implements TaskInterface
     /** @var DownloadRepository  */
     protected $repository;
 
+    protected $tmpDirectory = 'tmp';
 
     public function __construct()
     {
@@ -24,7 +25,7 @@ class Download extends Type implements TaskInterface
     {
         // TODO: переделать на guzzle
         return file_put_contents(
-            $this->params['photo'],
+            $this->tmpDirectory.'/'.$this->params['photo'],
             file_get_contents(
                 $this->params['url']
             )
