@@ -5,6 +5,7 @@ namespace Dixmod\Application;
 use Dixmod\Services\Task\Status;
 use Dixmod\Services\Task\Task;
 use Dixmod\Services\Task\TaskFactory;
+use Dixmod\Services\Log;
 
 class Manager implements ApplicationInterface
 {
@@ -17,6 +18,7 @@ class Manager implements ApplicationInterface
     public function __construct()
     {
         $this->taskFactory = new TaskFactory();
+        $this->log = new Log();
     }
 
     /**
@@ -32,6 +34,7 @@ class Manager implements ApplicationInterface
             /** @var $task Task */
             try{
                 $task->changeStatus(Status::IN_WORK);
+
                 $task->run();
                 $task->changeStatus(Status::DONE);
             }catch (\Exception $exception){
