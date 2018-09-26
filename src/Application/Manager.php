@@ -2,7 +2,6 @@
 
 namespace Dixmod\Application;
 
-use Dixmod\Services\Log\Log;
 use Dixmod\Services\Task\Status;
 use Dixmod\Services\Task\Task;
 use Dixmod\Services\Task\TaskFactory;
@@ -12,13 +11,15 @@ class Manager implements ApplicationInterface
     /** @var TaskFactory */
     private $taskFactory;
 
+    /** @var Logger */
+    private $logger;
+
     /**
      * Manager constructor.
      */
     public function __construct()
     {
         $this->taskFactory = new TaskFactory();
-        $this->log = new Log();
     }
 
     /**
@@ -37,8 +38,7 @@ class Manager implements ApplicationInterface
                 $task->run();
                 $task->changeStatus(Status::DONE);
             } catch (\Exception $exception) {
-                print_r($exception->getMessage());
-                $task->changeStatus(Status::ERROR);
+                $task->changeStatus(Status::ERROR, $exception->getMessage());
             }
         }
     }

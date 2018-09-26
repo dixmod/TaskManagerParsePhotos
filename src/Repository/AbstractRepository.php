@@ -70,6 +70,36 @@ abstract class AbstractRepository
 
     /**
      * @param array $data
+     * @return bool|mixed
+     */
+    public function insert(array $data){
+        if(empty($data))
+            return false;
+
+        $params = [
+            'INSERT INTO ?n SET ',
+            $this->getTable()
+        ];
+
+        $fields = [];
+        foreach ($data as $col => $val) {
+            $fields[] = '?n = ?s';
+            $params[] = $col;
+            $params[] = $val;
+        }
+        $params[0] .= join(',', $fields);
+
+        return call_user_func_array(
+            [
+                $this->db,
+                "query"
+            ],
+            $params
+        );
+    }
+
+    /**
+     * @param array $data
      * @param $id
      * @return bool|mixed
      */

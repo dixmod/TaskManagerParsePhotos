@@ -4,6 +4,7 @@ namespace Dixmod\Services\Task;
 
 use Dixmod\DTO\TaskDTO;
 use Dixmod\Repository\Task\TaskRepository;
+use Dixmod\Services\Log\Logger;
 use Dixmod\Services\User\User;
 
 class Task extends TaskDTO implements TaskInterface
@@ -39,13 +40,15 @@ class Task extends TaskDTO implements TaskInterface
     }
 
     /**
-     * @param $status
+     * @param int $status
+     * @param string $message
      * @return void
      */
-    public function changeStatus($status)
+    public function changeStatus(int $status, string $message = '')
     {
         $this->status = $status;
         $this->save();
+        Logger::add($this->id, $status, $message);
     }
 
 
@@ -80,16 +83,19 @@ class Task extends TaskDTO implements TaskInterface
             $worker->setTaskId($this->id);
             $worker->run();
         } catch (\Exception $e) {
-            throw new \Exception('Error executor: '.$e->getMessage());
+            throw new \Exception('Error executor: ' . $e->getMessage());
         }
 
         return true;
     }
 
+    /**
+     * @return bool|mixed
+     */
     public function save()
     {
         $repository = new TaskRepository();
-        $repository->update(
+        return $repository->update(
             [
                 'status' => $this->status
             ],
