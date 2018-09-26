@@ -24,6 +24,7 @@ class Logger
      * @param int $task
      * @param int $status
      * @param string $message
+     * @return bool|mixed
      */
     public static function add(int $task, int $status, $message = '')
     {
@@ -31,7 +32,7 @@ class Logger
             self::$_instance = new self();
         }
 
-        self::$_instance->addRecord($task, $status, $message);
+        return self::$_instance->addRecord($task, $status, $message);
     }
 
     /**

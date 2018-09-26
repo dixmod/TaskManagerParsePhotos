@@ -26,6 +26,7 @@ CREATE TABLE `log` (
   `task` int(11) NOT NULL,
   `status` tinyint(3) NOT NULL,
   `date` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `message` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`task`,`status`),
   KEY `log_taskStatus_FK` (`status`),
   CONSTRAINT `log_taskStatus_FK` FOREIGN KEY (`status`) REFERENCES `taskStatus` (`id`),
@@ -66,7 +67,7 @@ CREATE TABLE `photoFilter` (
 
 LOCK TABLES `photoFilter` WRITE;
 /*!40000 ALTER TABLE `photoFilter` DISABLE KEYS */;
-INSERT INTO `photoFilter` VALUES (1,'Сепия',NULL,'sepia'),(2,'Нигатив',NULL,'negate'),(3,'Оттенки серого',NULL,'grayscale'),(4,'Размытие',NULL,'gaussianBlur');
+INSERT INTO `photoFilter` VALUES (1,'Сепия','Оттенок коричневого цвета','sepia'),(2,'Нигатив','В чёрно-белой фотографии и кинематографии образованное зёрнами металлического серебра','negate'),(3,'Оттенки серого',NULL,'grayscale'),(4,'Размытие',NULL,'gaussianBlur');
 /*!40000 ALTER TABLE `photoFilter` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -205,7 +206,7 @@ CREATE TABLE `typeTaskPhotoSend` (
 
 LOCK TABLES `typeTaskPhotoSend` WRITE;
 /*!40000 ALTER TABLE `typeTaskPhotoSend` DISABLE KEYS */;
-INSERT INTO `typeTaskPhotoSend` VALUES (3,'1.jpg','test@test.ru');
+INSERT INTO `typeTaskPhotoSend` VALUES (3,'1.jpg','dixmod@gmail.com');
 /*!40000 ALTER TABLE `typeTaskPhotoSend` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -244,4 +245,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-09-24 16:29:55
+-- Dump completed on 2018-09-26 13:53:44

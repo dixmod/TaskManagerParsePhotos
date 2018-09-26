@@ -11,9 +11,6 @@ class Manager implements ApplicationInterface
     /** @var TaskFactory */
     private $taskFactory;
 
-    /** @var Logger */
-    private $logger;
-
     /**
      * Manager constructor.
      */
